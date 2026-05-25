@@ -4,15 +4,12 @@ var map = new ol.Map({
     renderer: 'canvas',
     layers: layersList,
     view: new ol.View({
-         maxZoom: 27, minZoom: 1, projection: new ol.proj.Projection({
-            code: 'EPSG:32749',
-            //extent: [682747.560329, 9187656.528720, 699581.639365, 9198357.077872],
-            units: 'm'})
+         maxZoom: 27, minZoom: 1
     })
 });
 
 //initial view - epsg:3857 coordinates if not "Match project CRS"
-map.getView().fit([682747.560329, 9187656.528720, 699581.639365, 9198357.077872], map.getSize());
+map.getView().fit([12540722.517896, -820010.313934, 12557733.556371, -809086.499055], map.getSize());
 
 //full zooms only
 map.getView().setProperties({constrainResolution: true});
@@ -497,6 +494,17 @@ var bottomRightContainerDiv = document.getElementById('bottom-right-container')
 
 //title
 
+var Title = new ol.control.Control({
+    element: (() => {
+        var titleElement = document.createElement('div');
+        titleElement.className = 'top-left-title ol-control';
+        titleElement.innerHTML = '<h2 class="project-title">WebGIS PTN Surabaya</h2>';
+        return titleElement;
+    })(),
+    target: 'top-left-container'
+});
+map.addControl(Title)
+    
 //abstract
 
 
